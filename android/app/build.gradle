@@ -1,5 +1,8 @@
 plugins {
     id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
@@ -20,26 +23,25 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.graduation.smartcare"
+        applicationId "com.graduation.smartcare"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
-    flavorDimensions "default"
+    flavorDimensions "environment" 
     productFlavors {
         production {
-            dimension "default"
+            dimension "environment"
+            applicationId "com.graduation.smartcare"
             resValue "string", "app_name", "SmartCare Production"
-            applicationIdSuffix ".prod"
         }
         development {
-            dimension "default"
-            resValue "string", "app_name", "SmartCare Development"
+            dimension "environment"
             applicationIdSuffix ".dev"
+            resValue "string", "app_name", "SmartCare Development"
         }
     }
-
 
 
     buildTypes {
@@ -50,7 +52,9 @@ android {
         }
     }
 }
-
+googleServices {
+    disableVersionCheck = true // Optional, to avoid version mismatch warnings
+}
 flutter {
     source = "../.."
 }

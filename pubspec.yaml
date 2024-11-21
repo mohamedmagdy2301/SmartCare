@@ -26,6 +26,7 @@ dependencies:
   cached_network_image:
   skeletonizer:
   intl:
+  firebase_core: ^3.8.0
  
 dev_dependencies:
   flutter_test:
@@ -47,3 +48,6 @@ flutter:
 
 # flutter run --flavor development --target lib/main_development.dart
 # flutter run --flavor production --target lib/main_production.dart
+# flutter build apk --flavor production --target lib/main_production.dart
+# flutter build apk --flavor development --target lib/main_development.dart
+

@@ -1,0 +1,25 @@
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "smartcare-app-b9203",
+                    "appId": "1:536205315038:android:a3c9fa18c8e213623fab4f",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "smartcare-app-b9203",
+                    "configurations": {
+                        "android": "1:536205315038:android:a3c9fa18c8e213623fab4f",
+                        "ios": "1:536205315038:ios:2eb810aeda1aac823fab4f",
+                        "macos": "1:536205315038:ios:2eb810aeda1aac823fab4f",
+                        "web": "1:536205315038:web:8e92f01149accad03fab4f",
+                        "windows": "1:536205315038:web:bc759838bc12aaf63fab4f"
+                    }
+                }
+            }
+        }
+    }
+}
