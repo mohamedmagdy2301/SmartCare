@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "536205315038",
+    "project_id": "smartcare-app-b9203",
+    "storage_bucket": "smartcare-app-b9203.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536205315038:android:a3c9fa18c8e213623fab4f",
+        "android_client_info": {
+          "package_name": "com.graduation.smartcare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa_hb3PFQiYPLI5xJmKEvad7-99uFlDfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
