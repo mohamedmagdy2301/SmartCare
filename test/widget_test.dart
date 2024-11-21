@@ -7,13 +7,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:smartcare/main.dart';
+import 'package:smartcare/smartcare_app/smartcare_app.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const SmartCareApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

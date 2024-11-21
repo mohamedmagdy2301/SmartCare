@@ -1,4 +1,4 @@
-package com.example.smartcare
+package com.graduation.smartcare
 
 import io.flutter.embedding.android.FlutterActivity
 
