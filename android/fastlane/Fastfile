@@ -3,15 +3,30 @@ release_notes = "Bug fixes and performance improvements in this release."
 platform :android do
   desc "Lane for Android Firebase App Distribution"
   lane :firebase_distribution do
-     sh "flutter clean"
-     sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
-     firebase_app_distribution(
-       app: ENV["APP_ID"],
-       firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
-       android_artifact_type: "APK",
-       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
-       testers: "mohammedmego15@gmail.com",
-       release_notes: release_notes
-     )
-   end
+    sh "flutter clean"
+    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+    firebase_app_distribution(
+      app: ENV["APP_ID"],
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
+      testers: "mohammedmego15@gmail.com",
+      release_notes: release_notes
+    )
+  end
+end
+
+platform :ios do
+  desc "Lane for iOS Firebase App Distribution"
+  lane :firebase_distribution do
+    sh "flutter clean"
+    sh "flutter build ios --release --flavor production --target lib/main_production.dart"
+    firebase_app_distribution(
+      app: "1:536205315038:ios:2eb810aeda1aac823fab4f",
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+      ios_artifact_path: "../build/ios/ipa/Runner.ipa",
+      testers: "mohammedmego15@gmail.com",
+      release_notes: release_notes
+    )
+  end
 end
