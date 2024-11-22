@@ -63,3 +63,4 @@ jobs:
         run: |
           bundle exec fastlane ios firebase_distribution
         working-directory: android
+        
