@@ -1,4 +1,4 @@
-name: Android Fastlane with Firebase App Distribution Workflow
+name: Flutter Fastlane with Firebase App Distribution Workflow
 
 on:
   push:
@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  distribute_to_firebase:
+  # Android job
+  distribute_to_firebase_android:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout my repo code
@@ -23,17 +24,69 @@ jobs:
         with:
           channel: stable
 
-      - name: Setup Ruby
+      - name: Setup Ruby (for Fastlane)
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3.4"
           bundler-cache: true
           working-directory: android
 
-      - name: Build and Distribute App
+      - name: Install Flutter dependencies
+        run: flutter pub get
+        working-directory: android
+
+      - name: Flutter Clean and Build APK
+        run: |
+          flutter clean
+          flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons
+        working-directory: android
+
+      - name: Build and Distribute Android App to Firebase
         env:
           APP_ID: ${{ secrets.APP_ID }}
           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
         run: |
           bundle exec fastlane android firebase_distribution
+        working-directory: android
+
+  # iOS job
+  distribute_to_firebase_ios:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout my repo code
+        uses: actions/checkout@v2
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Setup Ruby (for Fastlane)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4"
+          bundler-cache: true
+          working-directory: android
+
+      - name: Install CocoaPods (iOS dependencies)
+        run: |
+          sudo gem install cocoapods
+          pod install --repo-update
+        working-directory: android
+
+      - name: Install Flutter dependencies
+        run: flutter pub get
+        working-directory: android
+
+      - name: Flutter Clean and Build iOS
+        run: |
+          flutter clean
+          flutter build ios --release --flavor production --target lib/main_production.dart
+        working-directory: android
+
+      - name: Build and Distribute iOS App to Firebase
+        env:
+          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
+        run: |
+          bundle exec fastlane ios firebase_distribution
         working-directory: android
