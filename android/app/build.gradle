@@ -38,7 +38,7 @@ android {
         }
         development {
             dimension "environment"
-            applicationIdSuffix ".dev"
+            applicationIdSuffix ".development"
             resValue "string", "app_name", "SmartCare Development"
         }
     }
